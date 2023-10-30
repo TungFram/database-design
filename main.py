@@ -2,25 +2,27 @@
 import csv
 from random import choice
 
-import random
+import random, string
 import datetime
 
-filename = 'price_units.csv'
+filename = 'catalog_nodes.csv'
+
+
+def randomword(length):
+    letters = string.ascii_lowercase
+    return ''.join(random.choice(letters) for i in range(length))
+
+
 with open(filename, 'w', newline='') as file:
     writer = csv.writer(file)
     field = [
-        "price_unit_id",
-        "one_gigabyte",
-        "koef_gigabyte",
-        "one_minutes",
-        "koef_minutes",
-        "one_sms",
-        "koef_sms",
-        "created_date"
+        "catalog_node_id",
+        "parent_node_id",
+        "title"
     ]
 
     writer.writerow(field)
-    for id in range(1, 999):
+    for id in range(1, 1000):
         # Генерируем случайную дату в диапазоне.
         start_date = datetime.date(2023, 1, 1)
         end_date = datetime.date(2029, 12, 31)
@@ -29,16 +31,23 @@ with open(filename, 'w', newline='') as file:
         # для строковых значений обязательно f"'{}'"
         date = f"'{random_date.strftime('%Y-%m-%d')}'"
 
+        # writer.writerow([
+        #     id,  # Id.
+        #     choice([0.1, 0.2, 0.5, 1.0, 2.0, 5.0]),  # Gigabytes.
+        #     choice([0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.5, 2.0]),
+        #     choice([0.1, 0.2, 0.5, 1.0, 2.0, 5.0]),   # Minutes.
+        #     choice([0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.5, 2.0]),
+        #     choice([0.1, 0.2, 0.5, 1.0, 2.0, 5.0]),   # Sms.
+        #     choice([0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.5, 2.0]),
+        #     date,  # created_date.
+        # ])
+
         writer.writerow([
-            id,  # Id.
-            choice([0.1, 0.2, 0.5, 1.0, 2.0, 5.0]),  # Gigabytes.
-            choice([0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.5, 2.0]),
-            choice([0.1, 0.2, 0.5, 1.0, 2.0, 5.0]),   # Minutes.
-            choice([0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.5, 2.0]),
-            choice([0.1, 0.2, 0.5, 1.0, 2.0, 5.0]),   # Sms.
-            choice([0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.5, 2.0]),
-            date,  # created_date.
+            id,
+            random.randint(1, 999),
+            randomword(64),
         ])
+
 
 # import os
 #
