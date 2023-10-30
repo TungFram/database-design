@@ -21,27 +21,21 @@ def randomdate():
     date = f"'{random_date.strftime('%Y-%m-%d')}'"
     return date
 
-filename = 'product_price.csv'
+filename = 'tags.csv'
 with open(filename, 'w', newline='') as file:
     writer = csv.writer(file)
     field = [
-        "price_id",
-        "prodict_id",
-        "old_price",
-        "current_price",
-        "date",
-        "version",
+        "tag_id",
+        "title",
+        "color",
     ]
 
     writer.writerow(field)
     for id in range(1, 1000):
         writer.writerow([
             id,
-            random.randint(1, 999),
-            choice([350, 400, 450, 500, 550, 600, 650, 700, 800, 1000, 1200, 1500, 2000, 5000, 10000]),
-            choice([350, 400, 450, 500, 550, 600, 650, 700, 800, 1000, 1200, 1500, 2000, 5000, 10000]),
-            randomdate(),
-            1,
+            randomword(32),
+            choice(["Black", "Blue", "White", "Pink", "Gray", "Yellow", "Orange"]),
         ])
 
 # import os
