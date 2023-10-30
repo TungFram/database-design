@@ -5,17 +5,22 @@ from random import choice
 import random
 import datetime
 
-filename = 'rates_price_units.csv'
+filename = 'price_units.csv'
 with open(filename, 'w', newline='') as file:
     writer = csv.writer(file)
     field = [
-        "rate_id",
         "price_unit_id",
-        "rate_price"
+        "one_gigabyte",
+        "koef_gigabyte",
+        "one_minutes",
+        "koef_minutes",
+        "one_sms",
+        "koef_sms",
+        "created_date"
     ]
 
     writer.writerow(field)
-    for id in range(1, 1000):
+    for id in range(1, 999):
         # Генерируем случайную дату в диапазоне.
         start_date = datetime.date(2023, 1, 1)
         end_date = datetime.date(2029, 12, 31)
@@ -24,21 +29,15 @@ with open(filename, 'w', newline='') as file:
         # для строковых значений обязательно f"'{}'"
         date = f"'{random_date.strftime('%Y-%m-%d')}'"
 
-        # writer.writerow([
-        #     id,  # Id.
-        #     choice([0.1, 0.2, 0.5, 1.0, 2.0, 5.0]),  # Gigabytes.
-        #     choice([0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.5, 2.0]),
-        #     choice([0.1, 0.2, 0.5, 1.0, 2.0, 5.0]),   # Minutes.
-        #     choice([0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.5, 2.0]),
-        #     choice([0.1, 0.2, 0.5, 1.0, 2.0, 5.0]),   # Sms.
-        #     choice([0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.5, 2.0]),
-        #     date,  # created_date.
-        # ])
-
         writer.writerow([
-            random.randint(19, 998),
-            random.randint(1, 998),
-            'null'
+            id,  # Id.
+            choice([0.1, 0.2, 0.5, 1.0, 2.0, 5.0]),  # Gigabytes.
+            choice([0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.5, 2.0]),
+            choice([0.1, 0.2, 0.5, 1.0, 2.0, 5.0]),   # Minutes.
+            choice([0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.5, 2.0]),
+            choice([0.1, 0.2, 0.5, 1.0, 2.0, 5.0]),   # Sms.
+            choice([0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.5, 2.0]),
+            date,  # created_date.
         ])
 
 # import os
