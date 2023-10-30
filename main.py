@@ -21,21 +21,19 @@ def randomdate():
     date = f"'{random_date.strftime('%Y-%m-%d')}'"
     return date
 
-filename = 'tags.csv'
+filename = 'tags_products.csv'
 with open(filename, 'w', newline='') as file:
     writer = csv.writer(file)
     field = [
+        "product_id",
         "tag_id",
-        "title",
-        "color",
     ]
 
     writer.writerow(field)
     for id in range(1, 1000):
         writer.writerow([
-            id,
-            randomword(32),
-            choice(["Black", "Blue", "White", "Pink", "Gray", "Yellow", "Orange"]),
+            random.randint(1, 999),
+            random.randint(1, 999),
         ])
 
 # import os
