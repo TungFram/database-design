@@ -14,6 +14,27 @@ CREATE VIEW products_info AS
     ORDER BY product_id
 ;
 
-DROP view products_info;
+DROP view product_tags;
 
 SELECT * FROM products_info;
+
+CREATE VIEW product_tags AS
+    SELECT
+        p.product_id   AS product_id,
+        p.title         AS title,
+        t.tag_id        AS tag_id,
+        t.title         AS Tag_text,
+        t.color         AS tag_color
+        FROM products AS p
+        LEFT JOIN public.tags_products tp on p.product_id = tp.product_id
+        LEFT JOIN public.tags t on tp.tag_id = t.tag_id
+--     GROUP BY tp.product_id
+    ORDER BY p.product_id
+;
+
+SELECT * FROM product_tags
+where tag_id = 165;
+
+
+
+
