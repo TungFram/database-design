@@ -1,0 +1,10 @@
+docker run -d -e POSTGRES_PASSWORD=x -p 6543:5432 registry.gitlab.com/dalibo/postgresql_anonymizer
+
+Дальше подключаемся как к обычной бд
+Server: localhost
+Database: postgres
+Port: 6543
+Username: postgres
+Пароль пользователя postgres: x
+
+pg_restore -U postgres -h 0.0.0.0 -d postgres /home/lab4backup
